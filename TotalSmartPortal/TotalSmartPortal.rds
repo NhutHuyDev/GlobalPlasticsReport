@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="TotalSmartPortal">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=115.75.2.155;Initial Catalog=TotalSmartPortal</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>f8c81b7b-9b6b-4578-a30e-1350e4161519</DataSourceID>
+</RptDataSource>
