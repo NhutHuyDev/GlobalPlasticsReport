@@ -7,9 +7,9 @@
     </am:CreatedBy>
     <am:UpdatedBy>
       <am:Name>SSDTRS</am:Name>
-      <am:Version>17.14.36811.4</am:Version>
+      <am:Version>17.13.35825.156</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-01-10T13:43:38.4618049Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-01-11T09:22:09.6723261Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -43,6 +43,10 @@
         <Field Name="RowNumber">
           <DataField>RowNumber</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="BarcodeEntryID">
+          <DataField>BarcodeEntryID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="BarcodeID">
           <DataField>BarcodeID</DataField>
@@ -84,8 +88,20 @@
           <DataField>CommodityLineName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="EntryCode">
+          <DataField>EntryCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CeilingValue">
           <Value>=Ceiling(Fields!RowNumber.Value / 4)</Value>
+        </Field>
+        <Field Name="EntryName">
+          <DataField>EntryName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Reference">
+          <DataField>Reference</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -148,7 +164,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.06299in</Height>
+                  <Height>0.98in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1432,7 +1448,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.127cm</Top>
-            <Height>1.54449in</Height>
+            <Height>1.4615in</Height>
             <Width>7.66965in</Width>
             <Style>
               <Border>
@@ -1441,11 +1457,187 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.05cm</Height>
+        <Height>3.83921cm</Height>
         <Style />
       </Body>
       <Width>19.48091cm</Width>
       <Page>
+        <PageHeader>
+          <Height>0.59214cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox13">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!EntryDate.Value</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                        <Format>dd/MM/yyyy</Format>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value> Tổng KL: </Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Sum(Fields!Quantity.Value, "DataSet1")</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                        <Format>#,0;(#,0);''</Format>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value> Fields!EntryName.Value</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.00706cm</Top>
+              <Left>6.16692cm</Left>
+              <Height>0.57803cm</Height>
+              <Width>13.31399cm</Width>
+              <Visibility>
+                <Hidden>=Fields!BarcodeEntryID.Value IS NOT NOTHING</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox11">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>(Giờ in: </Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Now(</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>) Số mã vạch: </Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=CountRows("DataSet1")</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                        <Format>#,0;(#,0);''</Format>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0cm</Top>
+              <Height>0.57803cm</Height>
+              <Width>6.02581cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox14">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!CommodityCode.Value</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                        <Format>dd/MM/yyyy</Format>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value xml:space="preserve"> </Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                        <Format>dd/MM/yyyy</Format>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Fields!CommodityName.Value</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Arial</FontFamily>
+                        <Format>dd/MM/yyyy</Format>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Left>6.16692cm</Left>
+              <Height>0.57803cm</Height>
+              <Width>13.31399cm</Width>
+              <ZIndex>2</ZIndex>
+              <Visibility>
+                <Hidden>=Fields!BarcodeEntryID.Value IS NOTHING</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
         <PageHeight>16.4cm</PageHeight>
         <PageWidth>20.4cm</PageWidth>
         <LeftMargin>0.6cm</LeftMargin>
