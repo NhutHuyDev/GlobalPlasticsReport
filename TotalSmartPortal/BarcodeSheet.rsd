@@ -81,12 +81,12 @@
         <DataField>EntryCode</DataField>
         <rd:TypeName>System.String</rd:TypeName>
       </Field>
-      <Field Name="Description">
-        <DataField>Description</DataField>
-        <rd:TypeName>System.String</rd:TypeName>
-      </Field>
       <Field Name="EntryName">
         <DataField>EntryName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Description">
+        <DataField>Description</DataField>
         <rd:TypeName>System.String</rd:TypeName>
       </Field>
       <Field Name="Reference">
